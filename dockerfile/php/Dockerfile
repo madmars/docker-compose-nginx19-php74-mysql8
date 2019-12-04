@@ -2,7 +2,7 @@ FROM php:7.4.0-fpm-alpine
 
 RUN apk update --no-cache && \
   apk upgrade --update-cache --available && \
-  apk add git oniguruma-dev libressl-dev zlib-dev libpng-dev libxml2-dev autoconf gcc g++ make imagemagick imagemagick-dev libzip libzip-dev
+  apk add git oniguruma-dev libressl-dev zlib-dev libpng-dev libxml2-dev autoconf gcc g++ make imagemagick imagemagick-dev libzip libzip-dev nodejs nodejs-npm
 
 RUN docker-php-ext-install mysqli && \
   docker-php-ext-install tokenizer && \
@@ -29,3 +29,4 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
   php -r "unlink('composer-setup.php');" && \
   mv composer.phar /usr/local/bin/composer
 
+RUN npm i -g yarn
