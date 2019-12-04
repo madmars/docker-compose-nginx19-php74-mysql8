@@ -8,6 +8,7 @@ services:
     volumes:
       - ./webroot:/var/www/html
       - ./dockerfile/nginx/log:/var/log/nginx
+      - ./dockerfile/nginx/conf:/etc/nginx
     depends_on:
       - php-fpm
       - mysql
