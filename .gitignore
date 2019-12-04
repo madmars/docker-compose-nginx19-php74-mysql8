@@ -4,5 +4,4 @@ dockerfile/nginx/conf/*
 dockerfile/nginx/log/*
 dockerfile/php/log/*
 dockerfile/php/conf/*
-dockerfile/php/conf/*
 dockerfile/mysql/db_data/*
