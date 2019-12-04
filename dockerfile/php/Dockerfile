@@ -2,7 +2,7 @@ FROM php:7.4.0-fpm-alpine
 
 RUN apk update --no-cache && \
   apk upgrade --update-cache --available && \
-  apk add git oniguruma-dev libressl-dev zlib-dev libpng-dev libxml2-dev autoconf gcc g++ make imagemagick imagemagick-dev
+  apk add git oniguruma-dev libressl-dev zlib-dev libpng-dev libxml2-dev autoconf gcc g++ make imagemagick imagemagick-dev libzip libzip-dev
 
 RUN docker-php-ext-install mysqli && \
   docker-php-ext-install tokenizer && \
@@ -16,6 +16,7 @@ RUN docker-php-ext-install mysqli && \
   docker-php-ext-install mbstring && \
   docker-php-ext-install iconv && \
   docker-php-ext-install phar && \
+  docker-php-ext-install zip && \
   pecl install apcu-5.1.18 && \
   docker-php-ext-enable apcu
 
