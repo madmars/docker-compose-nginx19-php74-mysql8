@@ -1,7 +1,0 @@
-2019/12/04 08:44:58 [error] 8#8: *1 open() "/usr/share/nginx/html/adm.php" failed (2: No such file or directory), client: 192.168.0.1, server: localhost, request: "GET /adm.php?server=mysql&username=root&db=wordpress HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/adm.php?server=mysql&username=root&database="
-2019/12/04 08:47:04 [error] 7#7: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.16.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/"
-2019/12/04 08:47:08 [error] 7#7: *1 open() "/usr/share/nginx/html/index.php" failed (2: No such file or directory), client: 192.168.16.1, server: localhost, request: "GET /index.php HTTP/1.1", host: "localhost:8080"
-2019/12/04 08:47:09 [error] 7#7: *1 open() "/usr/share/nginx/html/index.php" failed (2: No such file or directory), client: 192.168.16.1, server: localhost, request: "GET /index.php HTTP/1.1", host: "localhost:8080"
-2019/12/04 08:47:15 [error] 7#7: *1 open() "/usr/share/nginx/html/p.php" failed (2: No such file or directory), client: 192.168.16.1, server: localhost, request: "GET /p.php HTTP/1.1", host: "localhost:8080"
-2019/12/04 08:47:15 [error] 7#7: *1 open() "/usr/share/nginx/html/p.php" failed (2: No such file or directory), client: 192.168.16.1, server: localhost, request: "GET /p.php HTTP/1.1", host: "localhost:8080"
-2019/12/04 08:49:23 [emerg] 1#1: open() "/etc/nginx/nginx.conf" failed (2: No such file or directory)
