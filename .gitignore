@@ -1,0 +1,9 @@
+*.code-workspace
+webroot/*
+dockerfile/nginx/conf/
+dockerfile/nginx/conf/conf.d/!default.conf
+dockerfile/nginx/log/*
+dockerfile/php/log/*
+dockerfile/php/conf/
+dockerfile/mysql/db_data/*
+.env
