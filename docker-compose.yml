@@ -13,6 +13,12 @@ services:
     depends_on:
       - php-fpm
       - mysql
+      - mailcatcher
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
   php-fpm:
     build:
       context: ./dockerfile/php
