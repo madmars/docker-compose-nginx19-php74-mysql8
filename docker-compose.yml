@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./webroot:/var/www/html
+      - ./berryb-wordpress:/var/www/html
       - ./dockerfile/nginx/log:/var/log/nginx
       - ./dockerfile/nginx/nginx.conf:/etc/nginx.conf
       - ./dockerfile/nginx/conf.d:/etc/nginx/conf.d
@@ -26,7 +26,7 @@ services:
       - ./webroot:/var/www/html
       - ./dockerfile/php/conf/php.ini:/usr/local/etc/php/php.ini
       - ./dockerfile/php/conf/php-fpm.d.conf:/usr/local/etc/php-fpm.d/www.ini
-      - ./dockerfile/php/log/fpm-php.error.log:/var/log/fpm-php.www.log
+      - ./dockerfile/php/log:/var/log
   mysql:
     build:
       context: ./dockerfile/mysql

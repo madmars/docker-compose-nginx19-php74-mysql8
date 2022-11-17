@@ -1,3 +1,3 @@
-FROM mysql:8.0.18
-
-RUN apt update -y && apt upgrade -y
+FROM mysql:8.0.31-debian
+RUN apt-get update -y && \
+  apt-get upgrade -y
