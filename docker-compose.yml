@@ -1,33 +1,42 @@
 version: "2"
 services:
   nginx:
+    container_name: ngnix
+    depends_on:
+      - php-fpm
+      - mailcatcher
     build:
       context: ./dockerfile/nginx
     ports:
       - "8080:80"
     volumes:
-      - ./berryb-wordpress:/var/www/html
-      - ./dockerfile/nginx/log:/var/log/nginx
-      - ./dockerfile/nginx/nginx.conf:/etc/nginx.conf
-      - ./dockerfile/nginx/conf.d:/etc/nginx/conf.d
-    depends_on:
-      - php-fpm
-      - mysql
-      - mailcatcher
+      - ./public_html:/var/www/html:delegated
+      - ./dockerfile/nginx/log:/var/log/nginx:delegated
+      - ./dockerfile/nginx/nginx.conf:/etc/nginx.conf:delegated
+      - ./dockerfile/nginx/conf.d:/etc/nginx/conf.d:delegated
   mailcatcher:
+    container_name: mailcatcher
     image: schickling/mailcatcher
     ports:
       - "1080:1080"
       - "1025:1025"
   php-fpm:
+    container_name: php-fpm
+    depends_on:
+      - mysql
     build:
       context: ./dockerfile/php
     volumes:
-      - ./webroot:/var/www/html
-      - ./dockerfile/php/conf/php.ini:/usr/local/etc/php/php.ini
-      - ./dockerfile/php/conf/php-fpm.d.conf:/usr/local/etc/php-fpm.d/www.ini
-      - ./dockerfile/php/log:/var/log
+      - ./public_html:/var/www/html:delegated
+      - ./dockerfile/php/conf/php.ini:/usr/local/etc/php/php.ini:delegated
+      - ./dockerfile/php/conf/php-fpm.d.conf:/usr/local/etc/php-fpm.d/www.ini:delegated
+      - ./dockerfile/php/log:/var/log:delegated
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: db
+      WORDPRESS_DB_PASSWORD: db
   mysql:
+    container_name: mysql
     build:
       context: ./dockerfile/mysql
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -40,4 +49,4 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./dockerfile/mysql/db_data:/var/lib/mysql
+      - ./dockerfile/mysql/db_data:/var/lib/mysql:delegated

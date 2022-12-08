@@ -2,28 +2,19 @@ FROM php:7.4.0-fpm-alpine
 
 RUN apk update --no-cache && \
   apk upgrade --update-cache --available && \
-  apk add git oniguruma-dev libressl-dev zlib-dev libpng-dev libxml2-dev autoconf gcc g++ make imagemagick imagemagick-dev libzip libzip-dev nodejs nodejs-npm
+  apk add git mysql-client oniguruma-dev libressl-dev zlib-dev libpng-dev libxml2-dev autoconf gcc g++ make imagemagick imagemagick-dev libzip libzip-dev
 
 RUN pecl install apcu-5.1.18 && \
   docker-php-ext-enable apcu && \
-  docker-php-ext-install gd && \
-  docker-php-ext-install mysqli && \
-  docker-php-ext-install tokenizer && \
-  docker-php-ext-install json && \
-  docker-php-ext-install xml && \
-  docker-php-ext-install ctype && \
-  docker-php-ext-install bcmath && \
-  docker-php-ext-install opcache && \
-  docker-php-ext-install pdo_mysql && \
-  docker-php-ext-install pdo && \
-  docker-php-ext-install mbstring && \
-  docker-php-ext-install iconv && \
-  docker-php-ext-install phar && \
-  docker-php-ext-install zip
+  docker-php-ext-install gd mysqli tokenizer json xml ctype bcmath opcache pdo_mysql pdo mbstring iconv phar zip
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
   php composer-setup.php  && \
   php -r "unlink('composer-setup.php');" && \
+  chmod +x composer.phar && \
   mv composer.phar /usr/local/bin/composer
 
-RUN npm i -g yarn
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+  && chmod +x wp-cli.phar \
+  && mv wp-cli.phar /usr/local/bin/wp \
+  && wp package install wp-media/wp-rocket-cli:trunk --allow-root

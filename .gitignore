@@ -3,4 +3,4 @@ dockerfile/nginx/log/*
 dockerfile/php/log/*
 dockerfile/mysql/db_data/*
 .env
-berryb-wordpress/
+public_html/
